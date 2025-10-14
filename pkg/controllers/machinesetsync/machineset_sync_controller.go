@@ -902,7 +902,7 @@ func (r *MachineSetSyncReconciler) ensureCAPIMachineSetStatusUpdated(ctx context
 	}
 
 	if err := r.Status().Patch(ctx, existingCAPIMachineSet, patchBase); err != nil {
-		logger.Error(err, "Failed to update CAPI machine set status")
+		logger.Error(err, "Failed to update CAPI machine set status", "patchBase", patchBase, "existingCAPIMachineSet.Status", existingCAPIMachineSet.Status)
 		updateErr := fmt.Errorf("failed to update CAPI machine set status: %w", err)
 
 		if condErr := r.applySynchronizedConditionWithPatch(
